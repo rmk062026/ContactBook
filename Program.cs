@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.Clear();
         bool programRunning = true;
         while (programRunning)
         {
@@ -14,7 +15,7 @@ class Program
             System.Console.WriteLine("3. Search for contact");
             System.Console.WriteLine("4. Delete contact");
             System.Console.WriteLine("5. Exit");
-            System.Console.WriteLine("Please enter a choice (1-5):");
+            System.Console.WriteLine("Please enter a choice (1-5):\n\n");
             string choiceInput = Console.ReadLine() ?? "";
 
             switch (choiceInput)
