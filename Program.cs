@@ -63,11 +63,23 @@ class Program
 
                 case "2":
                     Console.Clear();
-                    Console.WriteLine("Show all contacts site");
+
+                    IEnumerable<Contact> allContacts = contactService.GetAllContacts();
+
+                    foreach (Contact currentContact in allContacts)
+                    {
+                        Console.WriteLine($"ID: {currentContact.Id}");
+                        Console.WriteLine($"Name: {currentContact.Name}");
+                        Console.WriteLine($"Phone number: {currentContact.PhoneNumber}");
+                        Console.WriteLine($"Address: {currentContact.Address}");
+                        Console.WriteLine($"Email: {currentContact.Email}");
+                        Console.WriteLine("-----------------------------");
+                    }
 
                     Console.WriteLine("\nPress any key to return...");
                     Console.ReadKey(true);
                     break;
+
                 case "3":
                     Console.Clear();
                     Console.WriteLine("Search for contact site");
@@ -75,6 +87,7 @@ class Program
                     Console.WriteLine("\nPress any key to return...");
                     Console.ReadKey(true);
                     break;
+
                 case "4":
                     Console.Clear();
                     Console.WriteLine("Delete contact site");
@@ -82,6 +95,7 @@ class Program
                     Console.WriteLine("\nPress any key to return...");
                     Console.ReadKey(true);
                     break;
+
                 case "5":
                     Console.Clear();
                     programRunning = false;
