@@ -6,8 +6,18 @@ public class ContactService
 {
     private List<Contact> contacts = new();
 
+    private int nextId = 1;
+
     public void AddContact(Contact contact)
     {
+        contact.Id = nextId;
+        nextId++;
+
         contacts.Add(contact);
+    }
+
+    public IEnumerable<Contact> GetAllContacts()
+    {
+        return contacts;
     }
 }

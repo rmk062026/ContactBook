@@ -1,10 +1,14 @@
-﻿namespace ContactBook;
+﻿using ContactBook.Models;
+using ContactBook.Service;
+
+namespace ContactBook;
 
 class Program
 {
     static void Main(string[] args)
     {
         bool programRunning = true;
+        ContactService contactService = new ContactService();
         while (programRunning)
         {
             Console.Clear();
@@ -34,8 +38,24 @@ class Program
 
                     Console.WriteLine("Enter email:");
                     string email = Console.ReadLine() ?? "";
+                    Console.Clear();
 
-                    Console.WriteLine($"Name: {name}, PhoneNumber: {phoneNumber}, Address: {address}, Email: {email}");
+                    Contact contact = new Contact
+                    {
+                        Name = name,
+                        PhoneNumber = phoneNumber,
+                        Address = address,
+                        Email = email
+                    };
+                    contactService.AddContact(contact);
+
+                    Console.WriteLine();
+                    Console.WriteLine("Contact added successfully!");
+                    Console.WriteLine($"ID: {contact.Id}");
+                    Console.WriteLine($"Name: {contact.Name}");
+                    Console.WriteLine($"Phone number: {contact.PhoneNumber}");
+                    Console.WriteLine($"Address: {contact.Address}");
+                    Console.WriteLine($"Email: {contact.Email}");
 
                     Console.WriteLine("\nPress any key to return...");
                     Console.ReadKey(true);
