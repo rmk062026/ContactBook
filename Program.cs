@@ -22,7 +22,20 @@ class Program
             {
                 case "1":
                     Console.Clear();
-                    Console.WriteLine("Add new contact site");
+
+                    Console.WriteLine("Enter name:");
+                    string name = Console.ReadLine() ?? "";
+
+                    Console.WriteLine("Enter phone number");
+                    string phoneNumber = Console.ReadLine() ?? "";
+
+                    Console.WriteLine("Enter Address");
+                    string address = Console.ReadLine() ?? "";
+
+                    Console.WriteLine("Enter email:");
+                    string email = Console.ReadLine() ?? "";
+
+                    Console.WriteLine($"Name: {name}, PhoneNumber: {phoneNumber}, Address: {address}, Email: {email}");
 
                     Console.WriteLine("\nPress any key to return...");
                     Console.ReadKey(true);
