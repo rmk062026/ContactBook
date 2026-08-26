@@ -4,10 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Clear();
         bool programRunning = true;
         while (programRunning)
         {
+            Console.Clear();
             Console.WriteLine("=============== ContactBook =============== ");
             System.Console.WriteLine();
             System.Console.WriteLine("1. Add new contact");
@@ -21,29 +21,42 @@ class Program
             switch (choiceInput)
             {
                 case "1":
+                    Console.Clear();
                     Console.WriteLine("Add new contact site");
-                    Console.ReadKey();
+
+                    Console.WriteLine("\nPress any key to return...");
+                    Console.ReadKey(true);
                     break;
 
                 case "2":
+                    Console.Clear();
                     Console.WriteLine("Show all contacts site");
-                    Console.ReadKey();
+
+                    Console.WriteLine("\nPress any key to return...");
+                    Console.ReadKey(true);
                     break;
                 case "3":
+                    Console.Clear();
                     Console.WriteLine("Search for contact site");
-                    Console.ReadKey();
+
+                    Console.WriteLine("\nPress any key to return...");
+                    Console.ReadKey(true);
                     break;
                 case "4":
+                    Console.Clear();
                     Console.WriteLine("Delete contact site");
-                    Console.ReadKey();
+
+                    Console.WriteLine("\nPress any key to return...");
+                    Console.ReadKey(true);
                     break;
                 case "5":
+                    Console.Clear();
                     programRunning = false;
                     break;
 
                 default:
                     Console.WriteLine("Must input valid choice");
-                    Console.ReadKey();
+                    Console.ReadKey(true);
                     break;
             }
         }
