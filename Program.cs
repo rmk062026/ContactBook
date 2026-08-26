@@ -22,16 +22,20 @@ class Program
             {
                 case "1":
                     Console.WriteLine("Add new contact site");
+                    Console.ReadKey();
                     break;
 
                 case "2":
                     Console.WriteLine("Show all contacts site");
+                    Console.ReadKey();
                     break;
                 case "3":
                     Console.WriteLine("Search for contact site");
+                    Console.ReadKey();
                     break;
                 case "4":
                     Console.WriteLine("Delete contact site");
+                    Console.ReadKey();
                     break;
                 case "5":
                     programRunning = false;
@@ -39,6 +43,7 @@ class Program
 
                 default:
                     Console.WriteLine("Must input valid choice");
+                    Console.ReadKey();
                     break;
             }
         }
