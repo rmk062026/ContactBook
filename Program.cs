@@ -68,6 +68,7 @@ class Program
 
                     foreach (Contact currentContact in allContacts)
                     {
+                        Console.WriteLine();
                         Console.WriteLine($"ID: {currentContact.Id}");
                         Console.WriteLine($"Name: {currentContact.Name}");
                         Console.WriteLine($"Phone number: {currentContact.PhoneNumber}");
