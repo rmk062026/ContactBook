@@ -89,7 +89,20 @@ class Program
 
                 case "3":
                     Console.Clear();
-                    Console.WriteLine("Search for contact site");
+                    Console.WriteLine("Enter name to search: ");
+                    string search = Console.ReadLine() ?? "";
+
+                    IEnumerable<Contact> searchResults = contactService.SearchContacts(search);
+
+                    foreach (Contact contactSearch in searchResults)
+                    {
+                        Console.WriteLine($"ID: {contactSearch.Id}");
+                        Console.WriteLine($"Name: {contactSearch.Name}");
+                        Console.WriteLine($"Phone: {contactSearch.PhoneNumber}");
+                        Console.WriteLine($"Email: {contactSearch.Email}");
+                        Console.WriteLine($"Address: {contactSearch.Address}");
+                        Console.WriteLine($"Birthday: {contactSearch.Birthday}");
+                    }
 
                     Console.WriteLine("\nPress any key to return...");
                     Console.ReadKey(true);

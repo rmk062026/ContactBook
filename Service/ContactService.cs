@@ -20,4 +20,11 @@ public class ContactService
     {
         return contacts;
     }
+
+    public IEnumerable<Contact> SearchContacts(string search)
+    {
+        return contacts.Where(contact =>
+            contact.Name != null &&
+            contact.Name.Contains(search, StringComparison.OrdinalIgnoreCase));
+    }
 }
