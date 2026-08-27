@@ -38,6 +38,9 @@ class Program
 
                     Console.WriteLine("Enter email:");
                     string email = Console.ReadLine() ?? "";
+
+                    Console.WriteLine("Enter birthday:");
+                    string birthday = Console.ReadLine() ?? "";
                     Console.Clear();
 
                     Contact contact = new Contact
@@ -45,7 +48,8 @@ class Program
                         Name = name,
                         PhoneNumber = phoneNumber,
                         Address = address,
-                        Email = email
+                        Email = email,
+                        Birthday = birthday
                     };
                     contactService.AddContact(contact);
 
@@ -56,6 +60,7 @@ class Program
                     Console.WriteLine($"Phone number: {contact.PhoneNumber}");
                     Console.WriteLine($"Address: {contact.Address}");
                     Console.WriteLine($"Email: {contact.Email}");
+                    Console.WriteLine($"Email: {contact.Birthday}");
 
                     Console.WriteLine("\nPress any key to return...");
                     Console.ReadKey(true);
@@ -74,6 +79,7 @@ class Program
                         Console.WriteLine($"Phone number: {currentContact.PhoneNumber}");
                         Console.WriteLine($"Address: {currentContact.Address}");
                         Console.WriteLine($"Email: {currentContact.Email}");
+                        Console.WriteLine($"Birthday: {currentContact.Birthday}");
                         Console.WriteLine("-----------------------------");
                     }
 
