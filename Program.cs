@@ -27,14 +27,16 @@ class Program
                 case "1":
                     Console.Clear();
 
-                    Console.WriteLine("Enter name:");
-                    string name = Console.ReadLine() ?? "";
+                    // Console.WriteLine("Enter name:");
+                    // string name = Console.ReadLine() ?? "";
+                    string name = ReadRequiredString("Enter name: ");
 
                     Console.WriteLine("Enter phone number");
                     string phoneNumber = Console.ReadLine() ?? "";
 
                     Console.WriteLine("Enter Address");
                     string address = Console.ReadLine() ?? "";
+                    // string address = ReadRequiredString("Enter address: ");
 
                     Console.WriteLine("Enter email:");
                     string email = Console.ReadLine() ?? "";
