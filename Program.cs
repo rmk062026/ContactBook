@@ -45,20 +45,21 @@ class Program
                     // string email = Console.ReadLine() ?? "";
                     string email = ReadEmail();
 
-                    DateOnly? birthday = null;
-                    while (birthday == null)
-                    {
-                        Console.WriteLine("Enter birthday (dd.MM.yyyy): ");
-                        string birthdayInput = Console.ReadLine() ?? "";
-                        if (DateOnly.TryParse(birthdayInput, out DateOnly parsedBirthday))
-                        {
-                            birthday = parsedBirthday;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid date. Please try again...");
-                        }
-                    }
+                    // DateOnly? birthday = null;
+                    // while (birthday == null)
+                    // {
+                    //     Console.WriteLine("Enter birthday (dd.MM.yyyy): ");
+                    //     string birthdayInput = Console.ReadLine() ?? "";
+                    //     if (DateOnly.TryParse(birthdayInput, out DateOnly parsedBirthday))
+                    //     {
+                    //         birthday = parsedBirthday;
+                    //     }
+                    //     else
+                    //     {
+                    //         Console.WriteLine("Invalid date. Please try again...");
+                    //     }
+                    // }
+                    DateOnly birthday = ReadBirthday();
                     Console.Clear();
 
                     Contact contact = new Contact
@@ -253,6 +254,22 @@ class Program
             {
                 Console.WriteLine("Invalid email address.");
             }
+        }
+    }
+
+    static DateOnly ReadBirthday()
+    {
+        while (true)
+        {
+            Console.Write("Enter birthday (dd.MM.yyyy0): ");
+            string birthdayInput = Console.ReadLine()?.Trim() ?? "";
+
+            if (DateOnly.TryParse(birthdayInput, out DateOnly birthday))
+            {
+                return birthday;
+            }
+
+            Console.WriteLine("Invalid date. Please try again.");
         }
     }
 }
