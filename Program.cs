@@ -39,8 +39,20 @@ class Program
                     Console.WriteLine("Enter email:");
                     string email = Console.ReadLine() ?? "";
 
-                    Console.WriteLine("Enter birthday:");
-                    string birthday = Console.ReadLine() ?? "";
+                    DateOnly? birthday = null;
+                    while (birthday == null)
+                    {
+                        Console.WriteLine("Enter birthday (dd.MM.yyyy): ");
+                        string birthdayInput = Console.ReadLine() ?? "";
+                        if (DateOnly.TryParse(birthdayInput, out DateOnly parsedBirthday))
+                        {
+                            birthday = parsedBirthday;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid date. Please try again...");
+                        }
+                    }
                     Console.Clear();
 
                     Contact contact = new Contact
