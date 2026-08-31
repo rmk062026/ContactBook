@@ -1,5 +1,7 @@
 ﻿using ContactBook.Models;
 using ContactBook.Service;
+using System.Net.Mail;
+using System.Reflection;
 
 namespace ContactBook;
 
@@ -39,8 +41,9 @@ class Program
                     string address = Console.ReadLine() ?? "";
                     // string address = ReadRequiredString("Enter address: ");
 
-                    Console.WriteLine("Enter email:");
-                    string email = Console.ReadLine() ?? "";
+                    // Console.WriteLine("Enter email:");
+                    // string email = Console.ReadLine() ?? "";
+                    string email = ReadEmail();
 
                     DateOnly? birthday = null;
                     while (birthday == null)
@@ -225,6 +228,31 @@ class Program
                 return phoneNumber;
             }
             Console.WriteLine("Phone number can only contain numbers, + and spaces.");
+        }
+    }
+
+    static string ReadEmail()
+    {
+        while (true)
+        {
+            Console.WriteLine("Enter email: ");
+            string email = Console.ReadLine()?.Trim() ?? "";
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                Console.WriteLine("Email cannot be empty.");
+                continue;
+            }
+
+            try
+            {
+                MailAddress mailAddress = new MailAddress(email);
+                return email;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid email address.");
+            }
         }
     }
 }
