@@ -31,8 +31,9 @@ class Program
                     // string name = Console.ReadLine() ?? "";
                     string name = ReadRequiredString("Enter name: ");
 
-                    Console.WriteLine("Enter phone number");
-                    string phoneNumber = Console.ReadLine() ?? "";
+                    // Console.WriteLine("Enter phone number");
+                    // string phoneNumber = Console.ReadLine() ?? "";
+                    string phoneNumber = ReadPhoneNumber();
 
                     Console.WriteLine("Enter Address");
                     string address = Console.ReadLine() ?? "";
@@ -135,6 +136,8 @@ class Program
                     if (!int.TryParse(idInput, out int id))
                     {
                         Console.WriteLine("Invalid ID.");
+                        Console.ReadKey(true);
+                        break;
                     }
 
                     Contact? contactToDelete = contactService.GetContactById(id);
@@ -195,7 +198,33 @@ class Program
             {
                 return input;
             }
-            Console.WriteLine("This field connet be empty.");
+            Console.WriteLine("This field cannet be empty.");
+        }
+    }
+
+    static string ReadPhoneNumber()
+    {
+        while (true)
+        {
+            Console.WriteLine("Enter phone number");
+            string phoneNumber = Console.ReadLine()?.Trim() ?? "";
+
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                Console.WriteLine("Phone number must be empty.");
+                continue;
+            }
+
+            bool validPhoneNumber = phoneNumber.All(character =>
+            char.IsDigit(character) ||
+            character == '+' ||
+            character == ' ');
+
+            if (validPhoneNumber)
+            {
+                return phoneNumber;
+            }
+            Console.WriteLine("Phone number can only contain numbers, + and spaces.");
         }
     }
 }
