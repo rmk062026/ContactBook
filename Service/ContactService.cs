@@ -5,13 +5,21 @@ namespace ContactBook.Service;
 
 public class ContactService
 {
-    private List<Contact> contacts = new();
+    // private List<Contact> contacts = new();
+    private List<Contact> contacts;
     private int nextId = 1;
     private readonly ContactFileRepository fileRepository;
 
     public ContactService()
     {
         fileRepository = new ContactFileRepository();
+
+        contacts = fileRepository.LoadContacts();
+
+        if (contacts.Count > 0)
+        {
+            nextId = contacts.Max(contact => contact.Id) + 1;
+        }
     }
 
     public void AddContact(Contact contact)
