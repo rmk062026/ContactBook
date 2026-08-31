@@ -261,7 +261,7 @@ class Program
     {
         while (true)
         {
-            Console.Write("Enter birthday (dd.MM.yyyy0): ");
+            Console.Write("Enter birthday (dd.MM.yyyy): ");
             string birthdayInput = Console.ReadLine()?.Trim() ?? "";
 
             if (DateOnly.TryParse(birthdayInput, out DateOnly birthday))
