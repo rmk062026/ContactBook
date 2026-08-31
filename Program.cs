@@ -102,6 +102,7 @@ class Program
                         Console.WriteLine($"Email: {contactSearch.Email}");
                         Console.WriteLine($"Address: {contactSearch.Address}");
                         Console.WriteLine($"Birthday: {contactSearch.Birthday}");
+                        Console.WriteLine("-----------------------------");
                     }
 
                     Console.WriteLine("\nPress any key to return...");
