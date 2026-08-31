@@ -1,3 +1,4 @@
+using ContactBook.Data;
 using ContactBook.Models;
 
 namespace ContactBook.Service;
@@ -5,8 +6,13 @@ namespace ContactBook.Service;
 public class ContactService
 {
     private List<Contact> contacts = new();
-
     private int nextId = 1;
+    private readonly ContactFileRepository fileRepository;
+
+    public ContactService()
+    {
+        fileRepository = new ContactFileRepository();
+    }
 
     public void AddContact(Contact contact)
     {
@@ -14,6 +20,8 @@ public class ContactService
         nextId++;
 
         contacts.Add(contact);
+
+        fileRepository.SaveContacts(contacts);
     }
 
     public IEnumerable<Contact> GetAllContacts()
