@@ -130,21 +130,38 @@ class Program
                     Console.WriteLine("Enter contact ID:");
                     string idInput = Console.ReadLine() ?? "";
 
-                    if (int.TryParse(idInput, out int id))
+                    if (!int.TryParse(idInput, out int id))
                     {
-                        bool deleted = contactService.DeleteContact(id);
-                        if (deleted)
-                        {
-                            Console.WriteLine($"Contact with id: {id} is successfully deleted.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Contact not found!");
-                        }
+                        Console.WriteLine("Invalid ID.");
+                    }
+
+                    Contact? contactToDelete = contactService.GetContactById(id);
+
+                    if (contactToDelete == null)
+                    {
+                        Console.WriteLine("Contact not found.");
+                        Console.ReadKey(true);
+                        break;
+                    }
+
+                    Console.WriteLine("Contact found:");
+                    Console.WriteLine($"ID: {contactToDelete.Id}");
+                    Console.WriteLine($"Name: {contactToDelete.Name}");
+                    Console.WriteLine($"Phone: {contactToDelete.PhoneNumber}");
+                    Console.WriteLine($"email: {contactToDelete.Email}");
+                    Console.WriteLine();
+
+                    Console.Write("Delete this contact? (y/n): ");
+                    string confirmation = Console.ReadLine()?.Trim().ToLower() ?? "";
+
+                    if (confirmation == "y")
+                    {
+                        contactService.DeleteContact(id);
+                        Console.WriteLine("Contact deleted successfully.");
                     }
                     else
                     {
-                        Console.WriteLine("Invalid ID.");
+                        Console.WriteLine("Delete cancelled.");
                     }
 
                     Console.WriteLine("\nPress any key to return...");

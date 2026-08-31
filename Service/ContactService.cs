@@ -40,4 +40,9 @@ public class ContactService
         contacts.Remove(contact);
         return true;
     }
+
+    public Contact? GetContactById(int id)
+    {
+        return contacts.FirstOrDefault(contact => contact.Id == id);
+    }
 }
