@@ -27,4 +27,17 @@ public class ContactService
             contact.Name != null &&
             contact.Name.Contains(search, StringComparison.OrdinalIgnoreCase));
     }
+
+    public bool DeleteContact(int id)
+    {
+        Contact? contact = contacts.FirstOrDefault(contact => contact.Id == id);
+
+        if (contact == null)
+        {
+            return false;
+        }
+
+        contacts.Remove(contact);
+        return true;
+    }
 }

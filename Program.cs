@@ -72,7 +72,7 @@ class Program
                     Console.WriteLine($"Phone number: {contact.PhoneNumber}");
                     Console.WriteLine($"Address: {contact.Address}");
                     Console.WriteLine($"Email: {contact.Email}");
-                    Console.WriteLine($"Email: {contact.Birthday}");
+                    Console.WriteLine($"Birthday: {contact.Birthday?.ToString("dd.MM.yyyy") ?? "Not set"}");
 
                     Console.WriteLine("\nPress any key to return...");
                     Console.ReadKey(true);
@@ -91,7 +91,7 @@ class Program
                         Console.WriteLine($"Phone number: {currentContact.PhoneNumber}");
                         Console.WriteLine($"Address: {currentContact.Address}");
                         Console.WriteLine($"Email: {currentContact.Email}");
-                        Console.WriteLine($"Birthday: {currentContact.Birthday}");
+                        Console.WriteLine($"Birthday: {currentContact.Birthday?.ToString("dd.MM.yyyy") ?? "Not set"}");
                         Console.WriteLine("-----------------------------");
                     }
 
@@ -113,7 +113,7 @@ class Program
                         Console.WriteLine($"Phone: {contactSearch.PhoneNumber}");
                         Console.WriteLine($"Email: {contactSearch.Email}");
                         Console.WriteLine($"Address: {contactSearch.Address}");
-                        Console.WriteLine($"Birthday: {contactSearch.Birthday}");
+                        Console.WriteLine($"Birthday: {contactSearch.Birthday?.ToString("dd.MM.yyyy") ?? "Not set"}");
                         Console.WriteLine("-----------------------------");
                     }
 
@@ -123,7 +123,29 @@ class Program
 
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("Delete contact site");
+
+                    Console.WriteLine("=============== Delete Contact ===============");
+                    Console.WriteLine();
+
+                    Console.WriteLine("Enter contact ID:");
+                    string idInput = Console.ReadLine() ?? "";
+
+                    if (int.TryParse(idInput, out int id))
+                    {
+                        bool deleted = contactService.DeleteContact(id);
+                        if (deleted)
+                        {
+                            Console.WriteLine($"Contact with id: {id} is successfully deleted.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Contact not found!");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid ID.");
+                    }
 
                     Console.WriteLine("\nPress any key to return...");
                     Console.ReadKey(true);
