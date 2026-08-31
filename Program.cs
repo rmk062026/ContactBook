@@ -180,4 +180,20 @@ class Program
             }
         }
     }
+
+    static string ReadRequiredString(string message)
+    {
+        while (true)
+        {
+            Console.WriteLine(message);
+
+            string input = Console.ReadLine()?.Trim() ?? "";
+
+            if (!string.IsNullOrWhiteSpace(input))
+            {
+                return input;
+            }
+            Console.WriteLine("This field connet be empty.");
+        }
+    }
 }
