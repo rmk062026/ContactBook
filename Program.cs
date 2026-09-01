@@ -1,6 +1,8 @@
 ﻿using ContactBook.Models;
 using ContactBook.Service;
 using ContactBook.Helpers;
+using Microsoft.EntityFrameworkCore;
+using ContactBook.Data;
 
 namespace ContactBook;
 
@@ -9,6 +11,14 @@ class Program
     static void Main(string[] args)
     {
         bool programRunning = true;
+        string connectionString =
+            "Server=localhost;Database=ContactBook;Trusted_Connection=True;TrustServerCartificate=True;";
+
+        DbContextOptions<ContactDbContext> options =
+            new DbContextOptionsBuilder<ContactDbContext>()
+            .UseSqlServer(connectionString)
+            .Options;
+
         ContactService contactService = new ContactService();
         while (programRunning)
         {

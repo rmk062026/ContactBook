@@ -5,5 +5,10 @@ namespace ContactBook.Data;
 
 public class ContactDbContext : DbContext
 {
-    public DbSet<Contact> contacts { get; set; }
+    public ContactDbContext(DbContextOptions<ContactDbContext> options)
+: base(options)
+    {
+
+    }
+    public DbSet<Contact> Contacts { get; set; }
 }
