@@ -1,5 +1,6 @@
 ﻿using ContactBook.Models;
 using ContactBook.Service;
+using ContactBook.Helpers;
 
 namespace ContactBook;
 
@@ -27,32 +28,12 @@ class Program
                 case "1":
                     Console.Clear();
 
-                    Console.WriteLine("Enter name:");
-                    string name = Console.ReadLine() ?? "";
+                    string name = InputHelper.ReadRequiredString("Enter name: ");
+                    string phoneNumber = InputHelper.ReadPhoneNumber();
+                    string address = InputHelper.ReadRequiredString("Enter address: ");
+                    string email = InputHelper.ReadEmail();
+                    DateOnly birthday = InputHelper.ReadBirthday();
 
-                    Console.WriteLine("Enter phone number");
-                    string phoneNumber = Console.ReadLine() ?? "";
-
-                    Console.WriteLine("Enter Address");
-                    string address = Console.ReadLine() ?? "";
-
-                    Console.WriteLine("Enter email:");
-                    string email = Console.ReadLine() ?? "";
-
-                    DateOnly? birthday = null;
-                    while (birthday == null)
-                    {
-                        Console.WriteLine("Enter birthday (dd.MM.yyyy): ");
-                        string birthdayInput = Console.ReadLine() ?? "";
-                        if (DateOnly.TryParse(birthdayInput, out DateOnly parsedBirthday))
-                        {
-                            birthday = parsedBirthday;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid date. Please try again...");
-                        }
-                    }
                     Console.Clear();
 
                     Contact contact = new Contact
@@ -133,6 +114,8 @@ class Program
                     if (!int.TryParse(idInput, out int id))
                     {
                         Console.WriteLine("Invalid ID.");
+                        Console.ReadKey(true);
+                        break;
                     }
 
                     Contact? contactToDelete = contactService.GetContactById(id);
@@ -181,19 +164,5 @@ class Program
         }
     }
 
-    static string ReadRequiredString(string message)
-    {
-        while (true)
-        {
-            Console.WriteLine(message);
 
-            string input = Console.ReadLine()?.Trim() ?? "";
-
-            if (!string.IsNullOrWhiteSpace(input))
-            {
-                return input;
-            }
-            Console.WriteLine("This field connet be empty.");
-        }
-    }
 }

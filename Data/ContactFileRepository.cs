@@ -1,6 +1,5 @@
 using System.Text.Json;
 using ContactBook.Models;
-using ContactBook.Service;
 
 namespace ContactBook.Data;
 
