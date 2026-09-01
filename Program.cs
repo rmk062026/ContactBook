@@ -1,7 +1,6 @@
 ﻿using ContactBook.Models;
 using ContactBook.Service;
 using System.Net.Mail;
-using System.Reflection;
 
 namespace ContactBook;
 
@@ -177,7 +176,7 @@ class Program
             {
                 return input;
             }
-            Console.WriteLine("This field cannet be empty.");
+            Console.WriteLine("This field cannot be empty.");
         }
     }
 
@@ -190,7 +189,7 @@ class Program
 
             if (string.IsNullOrWhiteSpace(phoneNumber))
             {
-                Console.WriteLine("Phone number must be empty.");
+                Console.WriteLine("Phone number cannot be empty.");
                 continue;
             }
 
