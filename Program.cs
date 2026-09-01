@@ -31,10 +31,7 @@ class Program
 
                     string name = ReadRequiredString("Enter name: ");
                     string phoneNumber = ReadPhoneNumber();
-
-                    Console.WriteLine("Enter Address");
-                    string address = Console.ReadLine() ?? "";
-
+                    string address = ReadRequiredString("Enter address: ");
                     string email = ReadEmail();
                     DateOnly birthday = ReadBirthday();
 
