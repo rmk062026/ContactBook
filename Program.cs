@@ -47,16 +47,10 @@ class Program
                     contactService.AddContact(contact);
 
                     Console.WriteLine();
-                    Console.WriteLine("Contact added successfully!");
-                    Console.WriteLine($"ID: {contact.Id}");
-                    Console.WriteLine($"Name: {contact.Name}");
-                    Console.WriteLine($"Phone number: {contact.PhoneNumber}");
-                    Console.WriteLine($"Address: {contact.Address}");
-                    Console.WriteLine($"Email: {contact.Email}");
-                    Console.WriteLine($"Birthday: {contact.Birthday?.ToString("dd.MM.yyyy") ?? "Not set"}");
 
-                    Console.WriteLine("\nPress any key to return...");
-                    Console.ReadKey(true);
+                    ContactDisplayHelper.ShowContact(contact);
+
+                    InputHelper.WaitForKey();
                     break;
 
                 case "2":
@@ -67,17 +61,13 @@ class Program
                     foreach (Contact currentContact in allContacts)
                     {
                         Console.WriteLine();
-                        Console.WriteLine($"ID: {currentContact.Id}");
-                        Console.WriteLine($"Name: {currentContact.Name}");
-                        Console.WriteLine($"Phone number: {currentContact.PhoneNumber}");
-                        Console.WriteLine($"Address: {currentContact.Address}");
-                        Console.WriteLine($"Email: {currentContact.Email}");
-                        Console.WriteLine($"Birthday: {currentContact.Birthday?.ToString("dd.MM.yyyy") ?? "Not set"}");
+
+                        ContactDisplayHelper.ShowContact(currentContact);
+
                         Console.WriteLine("-----------------------------");
                     }
 
-                    Console.WriteLine("\nPress any key to return...");
-                    Console.ReadKey(true);
+                    InputHelper.WaitForKey();
                     break;
 
                 case "3":
@@ -89,17 +79,11 @@ class Program
 
                     foreach (Contact contactSearch in searchResults)
                     {
-                        Console.WriteLine($"ID: {contactSearch.Id}");
-                        Console.WriteLine($"Name: {contactSearch.Name}");
-                        Console.WriteLine($"Phone: {contactSearch.PhoneNumber}");
-                        Console.WriteLine($"Email: {contactSearch.Email}");
-                        Console.WriteLine($"Address: {contactSearch.Address}");
-                        Console.WriteLine($"Birthday: {contactSearch.Birthday?.ToString("dd.MM.yyyy") ?? "Not set"}");
+                        ContactDisplayHelper.ShowContact(contactSearch);
                         Console.WriteLine("-----------------------------");
                     }
 
-                    Console.WriteLine("\nPress any key to return...");
-                    Console.ReadKey(true);
+                    InputHelper.WaitForKey();
                     break;
 
                 case "4":
@@ -128,10 +112,8 @@ class Program
                     }
 
                     Console.WriteLine("Contact found:");
-                    Console.WriteLine($"ID: {contactToDelete.Id}");
-                    Console.WriteLine($"Name: {contactToDelete.Name}");
-                    Console.WriteLine($"Phone: {contactToDelete.PhoneNumber}");
-                    Console.WriteLine($"email: {contactToDelete.Email}");
+                    Console.WriteLine();
+                    ContactDisplayHelper.ShowContact(contactToDelete);
                     Console.WriteLine();
 
                     Console.Write("Delete this contact? (y/n): ");
@@ -147,8 +129,7 @@ class Program
                         Console.WriteLine("Delete cancelled.");
                     }
 
-                    Console.WriteLine("\nPress any key to return...");
-                    Console.ReadKey(true);
+                    InputHelper.WaitForKey();
                     break;
 
                 case "5":

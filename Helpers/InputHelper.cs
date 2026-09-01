@@ -86,4 +86,10 @@ public static class InputHelper
             Console.WriteLine("Invalid date. Please try again.");
         }
     }
+
+    public static void WaitForKey()
+    {
+        Console.WriteLine("\nPress any key to return...");
+        Console.ReadKey(true);
+    }
 }
