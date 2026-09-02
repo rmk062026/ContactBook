@@ -1,7 +1,5 @@
 using ContactBook.Data;
 using ContactBook.Models;
-using Microsoft.EntityFrameworkCore;
-
 namespace ContactBook.Service;
 
 public class ContactService
@@ -25,28 +23,16 @@ public class ContactService
 
     public IEnumerable<Contact> SearchContacts(string search)
     {
-        return contacts.Where(contact =>
-            contact.Name != null &&
-            contact.Name.Contains(search, StringComparison.OrdinalIgnoreCase));
-    }
-
-    public bool DeleteContact(int id)
-    {
-        // Contact? contact = contacts.FirstOrDefault(contact => contact.Id == id);
-
-        // if (contact == null)
-        // {
-        //     return false;
-        // }
-
-        // contacts.Remove(contact);
-
-        // fileRepository.SaveContacts(contacts);
-        // return true;
+        return contactRepository.SearchContacts(search);
     }
 
     public Contact? GetContactById(int id)
     {
-        return contacts.FirstOrDefault(contact => contact.Id == id);
+        return contactRepository.GetContactById(id);
+    }
+
+    public bool DeleteContact(int id)
+    {
+        return contactRepository.DeleteContact(id);
     }
 }
