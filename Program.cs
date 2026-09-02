@@ -12,12 +12,17 @@ class Program
     {
         bool programRunning = true;
         string connectionString =
-            "Server=localhost;Database=ContactBook;Trusted_Connection=True;TrustServerCartificate=True;";
+            "Server=localhost;Database=ContactBook;Trusted_Connection=True;TrustServerCertificate=True;";
 
         DbContextOptions<ContactDbContext> options =
             new DbContextOptionsBuilder<ContactDbContext>()
             .UseSqlServer(connectionString)
             .Options;
+
+        using ContactDbContext dbContext = new ContactDbContext(options);
+        ContactRepository contactRepository = new ContactRepository(dbContext);
+
+        List<Contact> contacts = dbContext.Contacts.ToList();
 
         ContactService contactService = new ContactService();
         while (programRunning)
@@ -54,7 +59,8 @@ class Program
                         Email = email,
                         Birthday = birthday
                     };
-                    contactService.AddContact(contact);
+                    contactRepository.AddContact(contact);
+                    Console.WriteLine($"Contact saved with ID: {contact.Id}");
 
                     Console.WriteLine();
 
@@ -65,8 +71,7 @@ class Program
 
                 case "2":
                     Console.Clear();
-
-                    IEnumerable<Contact> allContacts = contactService.GetAllContacts();
+                    IEnumerable<Contact> allContacts = contactRepository.GetAllContacts();
 
                     foreach (Contact currentContact in allContacts)
                     {
