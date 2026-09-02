@@ -21,10 +21,8 @@ class Program
 
         using ContactDbContext dbContext = new ContactDbContext(options);
         ContactRepository contactRepository = new ContactRepository(dbContext);
+        ContactService contactService = new ContactService(contactRepository);
 
-        List<Contact> contacts = dbContext.Contacts.ToList();
-
-        ContactService contactService = new ContactService();
         while (programRunning)
         {
             Console.Clear();
@@ -59,7 +57,7 @@ class Program
                         Email = email,
                         Birthday = birthday
                     };
-                    contactRepository.AddContact(contact);
+                    contactService.AddContact(contact);
                     Console.WriteLine($"Contact saved with ID: {contact.Id}");
 
                     Console.WriteLine();
@@ -71,7 +69,7 @@ class Program
 
                 case "2":
                     Console.Clear();
-                    IEnumerable<Contact> allContacts = contactRepository.GetAllContacts();
+                    IEnumerable<Contact> allContacts = contactService.GetAllContacts();
 
                     foreach (Contact currentContact in allContacts)
                     {

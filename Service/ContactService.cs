@@ -1,40 +1,26 @@
 using ContactBook.Data;
 using ContactBook.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactBook.Service;
 
 public class ContactService
 {
-    // private List<Contact> contacts = new();
-    private List<Contact> contacts;
-    private int nextId = 1;
-    private readonly ContactFileRepository fileRepository;
+    private readonly ContactRepository contactRepository;
 
-    public ContactService()
+    public ContactService(ContactRepository contactRepository)
     {
-        fileRepository = new ContactFileRepository();
-
-        contacts = fileRepository.LoadContacts();
-
-        if (contacts.Count > 0)
-        {
-            nextId = contacts.Max(contact => contact.Id) + 1;
-        }
+        this.contactRepository = contactRepository;
     }
 
     public void AddContact(Contact contact)
     {
-        contact.Id = nextId;
-        nextId++;
-
-        contacts.Add(contact);
-
-        fileRepository.SaveContacts(contacts);
+        contactRepository.AddContact(contact);
     }
 
     public IEnumerable<Contact> GetAllContacts()
     {
-        return contacts;
+        return contactRepository.GetAllContacts();
     }
 
     public IEnumerable<Contact> SearchContacts(string search)
@@ -46,17 +32,17 @@ public class ContactService
 
     public bool DeleteContact(int id)
     {
-        Contact? contact = contacts.FirstOrDefault(contact => contact.Id == id);
+        // Contact? contact = contacts.FirstOrDefault(contact => contact.Id == id);
 
-        if (contact == null)
-        {
-            return false;
-        }
+        // if (contact == null)
+        // {
+        //     return false;
+        // }
 
-        contacts.Remove(contact);
+        // contacts.Remove(contact);
 
-        fileRepository.SaveContacts(contacts);
-        return true;
+        // fileRepository.SaveContacts(contacts);
+        // return true;
     }
 
     public Contact? GetContactById(int id)
