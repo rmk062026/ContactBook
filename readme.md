@@ -11,3 +11,8 @@ This program is for contact information. Add, see and delete contacts.
 ## TODO later
 - Add all to a sql database (LOCAL or Cloud(Server))
 - Table (GUI)
+
+## Tech
+- C#
+- .NET
+- Microsoft SQL Server
