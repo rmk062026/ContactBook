@@ -20,7 +20,21 @@ public static class InputHelper
         }
     }
 
-    public static string ReadPhoneNumber()
+    public static string? ReadOptionalString(string message)
+{
+    Console.WriteLine(message);
+
+    string input = Console.ReadLine()?.Trim() ?? "";
+
+    if (string.IsNullOrWhiteSpace(input))
+    {
+        return null;
+    }
+
+    return input;
+}
+
+    public static string? ReadPhoneNumber()
     {
         while (true)
         {
@@ -29,8 +43,7 @@ public static class InputHelper
 
             if (string.IsNullOrWhiteSpace(phoneNumber))
             {
-                Console.WriteLine("Phone number cannot be empty.");
-                continue;
+                return null;
             }
 
             bool validPhoneNumber = phoneNumber.All(character =>
@@ -46,7 +59,7 @@ public static class InputHelper
         }
     }
 
-    public static string ReadEmail()
+    public static string? ReadEmail()
     {
         while (true)
         {
@@ -55,8 +68,7 @@ public static class InputHelper
 
             if (string.IsNullOrWhiteSpace(email))
             {
-                Console.WriteLine("Email cannot be empty.");
-                continue;
+                return null;
             }
 
             try
@@ -71,12 +83,18 @@ public static class InputHelper
         }
     }
 
-    public static DateOnly ReadBirthday()
+    public static DateOnly? ReadBirthday()
     {
         while (true)
         {
             Console.Write("Enter birthday (dd.MM.yyyy): ");
-            string birthdayInput = Console.ReadLine()?.Trim() ?? "";
+            string birthdayInput = Console.ReadLine()?.Trim() ?? "";     
+
+            if (string.IsNullOrWhiteSpace(birthdayInput))
+            {
+                return null;
+            }
+
 
             if (DateOnly.TryParse(birthdayInput, out DateOnly birthday))
             {

@@ -42,13 +42,13 @@ class Program
                     Console.Clear();
 
                     string name = InputHelper.ReadRequiredString("Enter name: ");
-                    string phoneNumber = InputHelper.ReadPhoneNumber();
-                    string address = InputHelper.ReadRequiredString("Enter address: ");
-                    string email = InputHelper.ReadEmail();
-                    DateOnly birthday = InputHelper.ReadBirthday();
+                    string? phoneNumber = InputHelper.ReadPhoneNumber();
+                    string? address = InputHelper.ReadOptionalString("Enter address (optional): ");
+                    string? email = InputHelper.ReadEmail();
+                    DateOnly? birthday = InputHelper.ReadBirthday();
 
                     Console.Clear();
-
+                    
                     Contact contact = new Contact
                     {
                         Name = name,
